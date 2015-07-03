@@ -1,0 +1,45 @@
+# vim: ft=ansible
+---
+
+- name: Pillow | Load configuration variables
+  include_vars: "{{ ansible_distribution_release }}.yml"
+
+- name: Pillow | Run apt-get update
+  apt: update_cache=yes
+
+- name: Pillow | Install Python’s development libraries
+  apt: name="python{{ ansible_python_version|truncate(3, True, '') }}-dev"
+
+- name: Pillow | Install TKINTER support
+  apt: name="{{ item }}"
+  with_items:
+    - "python-tk"
+    - "{{ pillow_tcl_lib }}"
+    - "{{ pillow_tk_lib }}"
+  when: pillow_tkinter
+
+- name: Pillow | Install JPEG support
+  apt: name="libjpeg8-dev"
+  when: pillow_jpeg
+
+- include: openjpeg2.0.yml
+  when: pillow_openjpeg
+
+- name: Pillow | Install ZLIB (PNG/ZIP) support
+  apt: name="zlib1g-dev"
+  when: pillow_png
+
+- name: Pillow | Install LIBTIFF support
+  apt: name="{{ pillow_tiff_lib }}"
+  when: pillow_tiff
+
+- name: Pillow | Install FREETYPE2 support
+  apt: name="libfreetype6-dev"
+  when: pillow_freetype2
+
+- name: Pillow | Install LITTLECMS2
+  apt: name="liblcms2-dev"
+  when: pillow_littlecms2
+
+- include: webp.yml
+  when: pillow_webp

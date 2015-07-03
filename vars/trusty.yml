@@ -1,0 +1,8 @@
+# vim: ft=ansible
+---
+
+# Ubuntu 14.04 Trusty Tahr
+
+pillow_tiff_lib: "libtiff5-dev"
+pillow_tcl_lib: "tcl8.6-dev"
+pillow_tk_lib: "tk8.6-dev"

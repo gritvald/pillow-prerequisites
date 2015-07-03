@@ -1,0 +1,16 @@
+# vim: ft=ansible
+---
+
+- name: Pillow | Install WEBP support
+  apt: name="libwebp-dev"
+
+- name: Pillow | Install WEBP support | Download libwebp sources
+  get_url: dest="/usr/src/libwebp-{{ libwebp_version }}.tar.gz" url="http://downloads.webmproject.org/releases/webp/libwebp-{{ libwebp_version }}.tar.gz"
+
+- name: Pillow | Install WEBP support | Unpacking libwebp tarball
+  unarchive: src="/usr/src/libwebp-{{ libwebp_version }}.tar.gz" dest="/usr/src/" copy=no
+
+- name: Pillow | Install WEBP support | Compile and install libwebp
+  shell: ./configure --prefix=/usr --enable-libwebpmux --enable-libwebpdemux && make && make install
+  args:
+    chdir: "/usr/src/libwebp-{{ libwebp_version }}"

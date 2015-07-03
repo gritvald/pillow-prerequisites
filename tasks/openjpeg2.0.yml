@@ -1,0 +1,16 @@
+# vim: ft=ansible
+---
+
+- name: Pillow | Install OPENJPEG (JPEG2000) support | Install cmake
+  apt: name="cmake"
+
+- name: Pillow | Install OPENJPEG (JPEG2000) support | Download openjpeg sources
+  get_url: dest="/usr/src/openjpeg-{{ openjpeg_version }}.tar.gz" url="http://sourceforge.net/projects/openjpeg.mirror/files/{{ openjpeg_version }}/openjpeg-{{ openjpeg_version }}.tar.gz/download"
+
+- name: Pillow | Install OPENJPEG (JPEG2000) support | Unpacking openjpeg tarball
+  unarchive: src="/usr/src/openjpeg-{{ openjpeg_version }}.tar.gz" dest="/usr/src/" copy=no
+
+- name: Pillow | Install OPENJPEG (JPEG2000) support | Compile and install openjpeg
+  shell: cmake . && make && make install
+  args:
+    chdir: "/usr/src/openjpeg-{{ openjpeg_version }}"

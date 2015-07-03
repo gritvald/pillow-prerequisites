@@ -1,0 +1,8 @@
+# vim: ft=ansible
+---
+
+# Ubuntu 12.04 Precise Pangolin
+
+pillow_tiff_lib: "libtiff4-dev"
+pillow_tcl_lib: "tcl8.5-dev"
+pillow_tk_lib: "tk8.5-dev"

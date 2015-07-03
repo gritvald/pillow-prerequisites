@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Paweł Korzeniewski
+  description: "Install Pillow dependencies"
+  min_ansible_version: 1.9
+  platforms:
+  - name: Ubuntu
+    versions:
+    - precise
+    - trusty
+  categories:
+  - development
+  - system
+  - web
+dependencies: []

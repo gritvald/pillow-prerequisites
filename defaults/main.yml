@@ -1,0 +1,11 @@
+# vim: ft=ansible
+---
+
+pillow_tkinter: yes
+pillow_jpeg: yes
+pillow_openjpeg: yes
+pillow_png: yes
+pillow_tiff: yes
+pillow_freetype2: yes
+pillow_littlecms2: yes
+pillow_webp: yes
